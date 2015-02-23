@@ -34,6 +34,7 @@ import org.zendesk.client.v2.model.TicketForm;
 import org.zendesk.client.v2.model.Topic;
 import org.zendesk.client.v2.model.User;
 import org.zendesk.client.v2.model.UserField;
+import org.zendesk.client.v2.util.ZendeskStdDateFormat;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -1420,7 +1421,8 @@ public class Zendesk implements Closeable {
         mapper.enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
         mapper.enable(DeserializationFeature.READ_ENUMS_USING_TO_STRING);
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);        
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.setDateFormat(new ZendeskStdDateFormat());
         return mapper;
     }
 
